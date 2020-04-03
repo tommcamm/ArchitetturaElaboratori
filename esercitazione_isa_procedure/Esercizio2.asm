@@ -1,8 +1,9 @@
 # PARTE 1: Calcolare a*3	(a+a+a)	con	due	istruzioni.	Il	valore a si trova nel registro $8.	Il	risultato è richiesto nel registro $9
 # PARTE 2: 	Calcolare a*4	(a+a+a+a)	con	due	istruzioni.	Il	valore a si trova nel registro $8.	Il	risultato è richiesto nel registro $9
+# Scritto per MARS! (non testato su QtSpim)
 
     .data
-spazio: .asciiz " "
+spazio: .asciiz "\n"
     .text
     .globl main
 main:   # PARTE 1
@@ -36,5 +37,3 @@ main:   # PARTE 1
         addi $a0, $9, 0
 
         syscall
-
-        jr $ra

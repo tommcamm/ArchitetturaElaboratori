@@ -1,8 +1,9 @@
 # Dato un array determinare l'elemento minimo
 # Considerazioni: 1. Bisogna utilizzare lo stack 2. opzionale determinare se l'array ha almeno due elementi
+# Scritto per MARS! (non testato su QtSpim)
 
     .data
-array:  .word -5, 4, 3, 2, 5, 7
+array:  .word 1, 4, 3, 2, 5, 7
 dim_array:  .word 6
 
     .text
@@ -33,8 +34,9 @@ main:   addi $sp, $sp, -40   # subu -> Subtract without overflow, impostando lo 
         lw $s3, 20($sp)
         lw $fp, 0($sp)
         addi $sp, $sp, 40
-
-        jr $ra
+        
+        li $v0, 10 # Exit
+        syscall 
 
 min_array:  # PROCEDURA: Minimo array
             addi $sp, $sp, -24 # frame di 6 word
@@ -50,8 +52,11 @@ min_array:  # PROCEDURA: Minimo array
             lw $a1, 4($t0)
             addi $t1, $t1, -2
             addi $t0, $t0, 8
+            move $s0, $t0
 
 ciclo:      jal min2numeri
+	    and $t0, $t0, $0
+	    move $t0, $s0
             addi $t1, $t1, -1
             bltz $t1, fine_array
             lw $a0, 0($t0)
@@ -68,6 +73,7 @@ fine_array: lw $ra, 4($sp) # Ripristino registri dallo stack e liberazione dello
 
 
 min2numeri: # PROCEDURA: Minimo tra due numeri
+	    and $t0, $t0, $0
             slt $t0, $a0, $a1
             beq $t0, $0, then
             move $v0, $a0

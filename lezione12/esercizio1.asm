@@ -34,4 +34,3 @@ fine:   # Parte finale
         syscall
         
         jr $ra
-

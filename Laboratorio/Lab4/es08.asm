@@ -1,4 +1,5 @@
 #  Esercizio 8 (Difficile)
+#  TODO: Inserimento dei numeri dell'array all'utente
 	.data
 array:	.word 1, 2, 3, 4, 5, 6
 numel:	.word 6
@@ -9,7 +10,8 @@ text2:	.asciiz "\nElemento massimo: "
 	.globl main
 main:	la $s0, array
 	lw $s1, numel
-	lw $t2, 0($s0) #inizializzo il min al primo elemento
+	lw $t2, 0($s0) # inizializzo il min al primo elemento
+	lw $t1, 0($s0) # inizializzo il max al primo elemento
 	
 ciclo:	beq $t3, $s1, exit # $t1 il max, $t2 il min
 	lw $t0, 0($s0)
